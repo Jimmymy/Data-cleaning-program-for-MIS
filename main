@@ -1,0 +1,20 @@
+import pandas as pd
+
+df = pd.read_csv('meat.csv')
+print(df.head())
+
+dfa = pd.DataFrame(columns=['肉類','消費額','都道府県'],index=[0],dtype='object')
+dfa.iloc[0,0] = 1
+t = 0
+li = [0,0,0]
+
+for i in range(47):
+    for j in range(5):
+        dfa.iloc[t,0] = str(df.columns[j+1])
+        dfa.iloc[t,1] = df.iloc[i,j+1]
+        dfa.iloc[t,2] = df.iloc[i,0]
+        dfa.loc[len(dfa)] = li
+        t = t + 1
+        
+print(dfa.head())
+dfa.to_csv('meat1.csv')
